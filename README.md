@@ -1,56 +1,41 @@
-# Book Search API Server
+API Proxy Server for Open Library
 
-This is the API server for the Book Search application, built using Node.js and Express. It proxies requests to the Open Library API.
+Overview
 
-## Features
+This API proxy server provides a simplified interface to access book and author data from the Open Library API. It handles JSON requests, enables CORS for all routes, and proxies search requests to the Open Library API.
 
-- Retrieve a list of books based on a search query.
-- Retrieve details for a specific book.
-- Retrieve a list of authors based on a search query.
-- Retrieve details for a specific author.
+Dependencies
 
-## API Endpoints
+- Express.js (web framework)
+- Axios (HTTP client library)
+- CORS (Cross-Origin Resource Sharing middleware)
 
-- `GET /books?q={query}` - Retrieve a list of books based on the search query.
-- `GET /books/:id` - Retrieve details for a specific book.
-- `GET /authors?q={query}` - Retrieve a list of authors based on the search query.
-- `GET /authors/:id` - Retrieve details for a specific author.
+Setup
 
-## Prerequisites
+1. Clone the repository or copy the code into a new file.
+2. Install dependencies using npm install or yarn install.
+3. Set the PORT environment variable (optional, defaults to 3000).
+4. Start the server using node server.js or npm start.
 
-- Node.js (v14 or later)
-- npm (v6 or later)
+API Endpoints
 
-## Getting Started
+- GET /api/search/books
+    - Searches for books by title, author, or keyword.
+    - Query parameters:
+        - q (string): Search query.
+        - page (number): Page number (defaults to 1).
+        - limit (number): Number of results per page (defaults to 10).
+    - Returns JSON data from Open Library API.
+- GET /api/search/authors
+    - Searches for authors by name.
+    - Query parameters:
+        - q (string): Search query.
+    - Returns JSON data from Open Library API.
 
-1. Clone the repository:
+Error Handling
 
-    ```bash
-    git clone https://github.com/yourusername/book-search-api-server.git
-    cd book-search-api-server
-    ```
+- If an error occurs while fetching data from Open Library, a 500 error response is returned with a JSON error message.
 
-2. Install dependencies:
+*
 
-    ```bash
-    npm install
-    ```
-
-3. Start the server:
-
-    ```bash
-    npm start
-    ```
-
-4. The server will be running on `http://localhost:3000`.
-
-## Project Structure
-
-- `index.js` - Main entry point of the application.
-- `routes/` - Contains the route definitions for the API endpoints.
-- `controllers/` - Contains the controller functions for handling the requests.
-- `README.md` - Instructions on how to set up and run the server.
-
-## License
-
-This project is licensed under the MIT License.
+Note: This README file assumes the code is saved in a file named server.js. Adjust the filename and setup instructions accordingly if needed.
